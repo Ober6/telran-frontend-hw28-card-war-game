@@ -1,0 +1,101 @@
+#root {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  text-align: center;
+  background: #fffef7;
+  border-radius: 8px;
+  color: #5a5a47;
+  font-size: 1.1rem;
+}
+
+h2 {
+  color: #8b8b66;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin: 0.6rem 0;
+}
+
+button {
+  min-width: 140px;
+  margin-top: 1.5rem;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 2rem 0 1rem;
+}
+
+.card-image {
+  width: 90px;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.card-image:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+  #root {
+    margin: 1rem;
+    padding: 1.5rem;
+    font-size: 1rem;
+  }
+  .cards {
+    gap: 1.5rem;
+  }
+  .card-image {
+    width: 70px;
+  }
+}
+
+.startpage-container {
+  max-width: 400px;
+  margin: 0 auto;
+  background: #fefdf5;
+  padding: 2rem;
+  border-radius: 8px;
+  color: #6b6b52;
+}
+
+.startpage-container h1 {
+  margin-bottom: 1.2rem;
+  color: #8b8b66;
+}
+
+.startpage-container input[type="text"] {
+  width: 80%;
+  font-size: 1.2rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e6e6d9;
+  background-color: #fffef7;
+  color: #5a5a47;
+  margin-bottom: 1.5rem;
+}
+
+.startpage-container input[type="text"]:focus {
+  outline: none;
+  border-color: #d4d4b8;
+}
+
+.startpage-container button {
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 0.75rem;
+  background-color: #e6e6d9;
+  border: none;
+  border-radius: 8px;
+  color: #5a5a47;
+  cursor: pointer;
+}
+
+.startpage-container button:hover {
+  background-color: #d4d4b8;
+}
