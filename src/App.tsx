@@ -7,9 +7,11 @@ import EndPage from './components/EndPage';
 import type {Rank, Card} from './utils/constants';
 import {ROUND_COUNT} from './utils/constants';
 import {generateDeck, shuffle} from './utils/util_functions';
+import {Route, Routes, useNavigate} from "react-router-dom";
 
 function App() {
-    const [page, setPage] = useState<'startPage' | 'playPage' | 'endPage'>('startPage');
+    const navigate = useNavigate();
+
     const [playerName, setPlayerName] = useState<string>('');
     const [points, setPoints] = useState({player: 0, computer: 0});
     const [currentRound, setCurrentRound] = useState(0);
@@ -35,14 +37,14 @@ function App() {
         if (name.trim() === '') return;
         setPlayerName(name);
         resetGame();
-        setPage('playPage');
+
+        navigate('/play');
     };
 
     const playNextRound = () => {
-
-
         if (deck.length < 2) {
-            setPage('endPage');
+
+            navigate('/end');
             return;
         }
 
@@ -62,7 +64,8 @@ function App() {
         }
 
         if (currentRound === ROUND_COUNT) {
-            setPage('endPage');
+
+            navigate('/end');
         } else {
             setCurrentRound(prev => prev + 1);
         }
@@ -70,7 +73,8 @@ function App() {
 
     const repeat = () => {
         resetGame();
-        setPage('playPage');
+
+        navigate('/play');
     };
 
     const playButtonName =
@@ -82,29 +86,33 @@ function App() {
 
 
     return (
-        <>
-            {page === 'startPage' && (
-                <StartPage saveAndStartGame={saveNameAndStartGame}/>
-            )}
-            {page === 'playPage' && (
-                <PlayPage
-                    playerName={playerName}
-                    nextRound={playNextRound}
-                    points={points}
-                    currentRound={currentRound}
-                    buttonName={playButtonName}
-                    playerCard={playerCard}
-                    computerCard={computerCard}
-                />
-            )}
-            {page === 'endPage' && (
-                <EndPage
-                    playerName={playerName}
-                    points={points}
-                    repeat={repeat}
-                />
-            )}
-        </>
+        <Routes>
+            <Route path="/" element={<StartPage saveAndStartGame={saveNameAndStartGame}/>}/>
+            <Route
+                path="/play"
+                element={
+                    <PlayPage
+                        playerName={playerName}
+                        nextRound={playNextRound}
+                        points={points}
+                        currentRound={currentRound}
+                        buttonName={playButtonName}
+                        playerCard={playerCard}
+                        computerCard={computerCard}
+                    />
+                }
+            />
+            <Route
+                path="/end"
+                element={
+                    <EndPage
+                        playerName={playerName}
+                        points={points}
+                        repeat={repeat}
+                    />
+                }
+            />
+        </Routes>
     );
 }
 
